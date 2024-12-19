@@ -1,0 +1,23 @@
+# List all services *except* PostgreSQL databases here
+services:
+  # A web service on the Ruby native runtime
+  - type: web
+    runtime: node
+    name: web-app-service
+    repo: https://github.com/MatyLo/Esgi.4iabd2.render.nodejs  # Default: Repo containing render.yaml
+    region: frankfurt # Default: oregon
+    plan: free    # Default: starter
+    buildCommand: npm install
+    startCommand: npm start
+    envVars: # Environment variables
+      - key: DATABASE_URL
+        fromDatabase: # Reference a property of a database (see available properties below)
+          name: cloud-bd
+          property: connectionString
+
+# List all PostgreSQL databases here
+databases:
+  # A database with a read replica
+  - name: cloud-db
+    region: frankfurt
+    plan: free
