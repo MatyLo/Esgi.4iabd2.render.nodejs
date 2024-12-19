@@ -12,7 +12,7 @@ services:
     envVars: # Environment variables
       - key: DATABASE_URL
         fromDatabase: # Reference a property of a database (see available properties below)
-          name: cloud-bd
+          name: cloud-db
           property: connectionString
 
 # List all PostgreSQL databases here
